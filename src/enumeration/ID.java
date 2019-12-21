@@ -1,5 +1,5 @@
 package enumeration;
 
 public enum ID {
-	Player(), Enemy();
+	Player(), Player2(), Enemy();
 }

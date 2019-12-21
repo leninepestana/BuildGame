@@ -14,8 +14,8 @@ public class Player extends GameObject {
 		super(x, y, id);
 		
 		//velX = 1;
-		velX = r.nextInt(5) + 1;
-		velY = r.nextInt(5);
+//		velX = r.nextInt(5) + 1;
+//		velY = r.nextInt(5);
 	}
 
 	@Override
@@ -27,7 +27,9 @@ public class Player extends GameObject {
 
 	@Override
 	public void render(Graphics g) {
-		g.setColor(Color.WHITE);
+		if (id == ID.Player) g.setColor(Color.WHITE);
+		else if (id ==ID.Player2) g.setColor(Color.blue);
+		//g.setColor(Color.WHITE);
 		g.fillRect(x, y, 32, 32);
 		
 	}

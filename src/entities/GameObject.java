@@ -27,15 +27,15 @@ public abstract class GameObject {
 	}
 	
 	public void setX(int x) {
-		this.velX = x;
+		this.x = x;
 	}
 	
 	public int getY() {
 		return y;
 	}
 	
-	public void setY() {
-		this.velY = y;
+	public void setY(int y) {
+		this.y = y;
 	}
 	
 	public ID getId() {
