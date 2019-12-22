@@ -6,6 +6,8 @@ import java.awt.Graphics;
 import java.awt.image.BufferStrategy;
 import java.util.Random;
 
+import entities.BasicEnemy;
+import entities.HUD;
 import entities.Handler;
 import entities.KeyInput;
 import entities.Player;
@@ -19,6 +21,7 @@ public class Game extends Canvas implements Runnable {
 	public static final int WIDTH = 640, HEIGHT = WIDTH / 12 * 9;
 	private Thread thread;
 	private boolean isRunning = false;
+	private HUD hud;
 	
 	private Random r;
 	private Handler handler;
@@ -32,14 +35,13 @@ public class Game extends Canvas implements Runnable {
 		
 		r = new Random();
 		
-		/*
-		for (int i = 0; i < 50; i++) {
-			handler.addObject(new Player(0,0, ID.Player));
-		}
-		*/
+		hud = new HUD();
 		
 		handler.addObject(new Player(WIDTH/2-12, HEIGHT/2-32, ID.Player));
-		handler.addObject(new Player(WIDTH/2+64, HEIGHT/2-32, ID.Player2));
+		//handler.addObject(new Player(WIDTH/2+64, HEIGHT/2-32, ID.Player2));
+		//for (int i = 0; i < 20; i++)
+			handler.addObject(new BasicEnemy(r.nextInt(WIDTH), r.nextInt(HEIGHT), ID.BasicEnemy));
+		//handler.addObject(new BasicEnemy(WIDTH/2-12, HEIGHT/2-32, ID.BasicEnemy));
 		
 	}
 	
@@ -65,7 +67,7 @@ public class Game extends Canvas implements Runnable {
 	
 	@Override
 	public void run() {
-		// TODO Auto-generated method stub
+		
 		this.requestFocus();
 		long lastTime = System.nanoTime();
 		double amountTicks = 60.0;
@@ -96,6 +98,7 @@ public class Game extends Canvas implements Runnable {
 	private void tick() {
 		// updates the game
 		handler.tick();
+		hud.tick();
 	}
 	
 	private void render() {
@@ -110,12 +113,22 @@ public class Game extends Canvas implements Runnable {
 		
 		// Meat and bones of our rendering
 		g.setColor(Color.black);
-		g.fillRect(0, 0, WIDTH, HEIGHT);
+		g.fillRect(0, 0, WIDTH, HEIGHT);		
 		
 		handler.render(g);
 		
+		hud.render(g);
+		
 		bs.show();
 		g.dispose();
+	}
+	
+	public static int clamp(int var, int min, int max) {
+		if (var >= max) 
+			return var = max;
+		else if (var <= min) 
+				return var = min;	
+		else return var;	
 	}
 	
 	public static void main(String[] args) {

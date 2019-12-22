@@ -4,6 +4,7 @@ import java.awt.Color;
 import java.awt.Graphics;
 import java.util.Random;
 
+import application.Game;
 import enumeration.ID;
 
 public class Player extends GameObject {
@@ -14,8 +15,8 @@ public class Player extends GameObject {
 		super(x, y, id);
 		
 		//velX = 1;
-//		velX = r.nextInt(5) + 1;
-//		velY = r.nextInt(5);
+		//velX = r.nextInt(5) + 1;
+		//velY = r.nextInt(5);
 	}
 
 	@Override
@@ -23,13 +24,13 @@ public class Player extends GameObject {
 		x += velX;
 		y += velY;
 		
+		x = Game.clamp(x, 0, Game.WIDTH - 46);
+		y = Game.clamp(y, 0, Game.HEIGHT - 68);
 	}
 
 	@Override
 	public void render(Graphics g) {
-		if (id == ID.Player) g.setColor(Color.WHITE);
-		else if (id ==ID.Player2) g.setColor(Color.blue);
-		//g.setColor(Color.WHITE);
+		g.setColor(Color.WHITE);
 		g.fillRect(x, y, 32, 32);
 		
 	}
