@@ -18,7 +18,7 @@ public class Game extends Canvas implements Runnable {
 
 	private static final long serialVersionUID = -3520908160442010701L;
 
-	public static final int WIDTH = 640, HEIGHT = WIDTH / 12 * 9;
+	public static final int WIDTH = 900, HEIGHT = WIDTH / 12 * 9;
 	private Thread thread;
 	private boolean isRunning = false;
 	private HUD hud;
@@ -37,10 +37,10 @@ public class Game extends Canvas implements Runnable {
 		
 		hud = new HUD();
 		
-		handler.addObject(new Player(WIDTH/2-12, HEIGHT/2-32, ID.Player));
+		handler.addObject(new Player(WIDTH/2-12, HEIGHT/2-32, ID.Player, handler));
 		//handler.addObject(new Player(WIDTH/2+64, HEIGHT/2-32, ID.Player2));
 		//for (int i = 0; i < 20; i++)
-			handler.addObject(new BasicEnemy(r.nextInt(WIDTH), r.nextInt(HEIGHT), ID.BasicEnemy));
+			handler.addObject(new BasicEnemy(r.nextInt(WIDTH), r.nextInt(HEIGHT), ID.BasicEnemy, handler));
 		//handler.addObject(new BasicEnemy(WIDTH/2-12, HEIGHT/2-32, ID.BasicEnemy));
 		
 	}
