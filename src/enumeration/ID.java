@@ -1,5 +1,5 @@
 package enumeration;
 
 public enum ID {
-	Player(), BasicEnemy(), Trail();
+	Player(), BasicEnemy(), FasterEnemy(), Trail();
 }

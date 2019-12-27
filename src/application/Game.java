@@ -11,6 +11,7 @@ import entities.HUD;
 import entities.Handler;
 import entities.KeyInput;
 import entities.Player;
+import entities.Spawn;
 import entities.Window;
 import enumeration.ID;
 
@@ -25,22 +26,34 @@ public class Game extends Canvas implements Runnable {
 	
 	private Random r;
 	private Handler handler;
+	private Spawn spawner;
+	
 	
 	public Game() {
+		
 		handler = new Handler();
 		this.addKeyListener(new KeyInput(handler));
+		
 		// Construct
 		new Window(WIDTH, HEIGHT, "Lets Build a Game", this);
 		
+		hud = new HUD();
 		
 		r = new Random();
 		
-		hud = new HUD();
+		spawner = new Spawn(handler, hud);
+		
+		
 		
 		handler.addObject(new Player(WIDTH/2-12, HEIGHT/2-32, ID.Player, handler));
+		handler.addObject(new BasicEnemy(r.nextInt(Game.WIDTH), r.nextInt(Game.HEIGHT), ID.BasicEnemy, handler));
+		
+		
 		//handler.addObject(new Player(WIDTH/2+64, HEIGHT/2-32, ID.Player2));
 		//for (int i = 0; i < 20; i++)
-			handler.addObject(new BasicEnemy(r.nextInt(WIDTH), r.nextInt(HEIGHT), ID.BasicEnemy, handler));
+			//handler.addObject(new BasicEnemy(r.nextInt(WIDTH), r.nextInt(HEIGHT), ID.BasicEnemy, handler));
+			
+			
 		//handler.addObject(new BasicEnemy(WIDTH/2-12, HEIGHT/2-32, ID.BasicEnemy));
 		
 	}
@@ -99,6 +112,7 @@ public class Game extends Canvas implements Runnable {
 		// updates the game
 		handler.tick();
 		hud.tick();
+		spawner.tick();
 	}
 	
 	private void render() {
