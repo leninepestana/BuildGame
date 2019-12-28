@@ -27,6 +27,7 @@ public class Player extends GameObject {
 		x += velX;
 		y += velY;
 		
+		// Prevents the player from going beyond the frame
 		x = Game.clamp(x, 0, Game.WIDTH - 48);
 		y = Game.clamp(y, 0, Game.HEIGHT - 70);
 		
@@ -38,7 +39,7 @@ public class Player extends GameObject {
 	private void collision() {
 		for (int i = 0; i < handler.object.size(); i++) {
 			GameObject tempObject = handler.object.get(i);
-			if (tempObject.getId() == ID.BasicEnemy || tempObject.getId() == ID.FasterEnemy) {				
+			if (tempObject.getId() == ID.BasicEnemy || tempObject.getId() == ID.FasterEnemy || tempObject.getId() == ID.SmartEnemy) {				
 				if (getBounds().intersects(tempObject.getBounds())) {
 					// Collision code
 					HUD.HEALTH -= 2;
@@ -50,13 +51,13 @@ public class Player extends GameObject {
 	@Override
 	public void render(Graphics g) {
 		g.setColor(Color.WHITE);
-		g.fillRect(x, y, 32, 32);
+		g.fillRect((int)x, (int)y, 32, 32);
 		
 	}
 
 	@Override
 	public Rectangle getBounds() {
-		return new Rectangle(x, y, 32, 32);
+		return new Rectangle((int)x, (int)y, 32, 32);
 	}
 
 	

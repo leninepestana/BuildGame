@@ -17,7 +17,7 @@ public class Trail extends GameObject {
 	private float life;
 	// life = 0.001 - 0.1
 	
-	public Trail(int x, int y, ID id, Color color, int width, int height, float life, Handler handler) {
+	public Trail(float x, float y, ID id, Color color, int width, int height, float life, Handler handler) {
 		super(x, y, id);
 		this.handler = handler;
 		this.color = color;
@@ -28,6 +28,7 @@ public class Trail extends GameObject {
 
 	@Override
 	public void tick() {
+		// The smaller the number, more longer our trail is going to be
 		if (alpha > life) {
 			alpha -=(0.01f);
 		} else handler.removeObject(this);
@@ -39,7 +40,7 @@ public class Trail extends GameObject {
 		g2d.setComposite(makeTransparent(alpha));
 		
 		g.setColor(color);
-		g.fillRect(x, y, width, height);
+		g.fillRect((int)x, (int)y, width, height);
 		
 		g2d.setComposite(makeTransparent(1));
 	}

@@ -11,6 +11,7 @@ import entities.HUD;
 import entities.Handler;
 import entities.KeyInput;
 import entities.Player;
+import entities.SmartEnemy;
 import entities.Spawn;
 import entities.Window;
 import enumeration.ID;
@@ -20,7 +21,8 @@ public class Game extends Canvas implements Runnable {
 	private static final long serialVersionUID = -3520908160442010701L;
 
 	public static final int WIDTH = 900, HEIGHT = WIDTH / 12 * 9;
-	private Thread thread;
+	
+	private Thread thread; // The entire game runs here
 	private boolean isRunning = false;
 	private HUD hud;
 	
@@ -47,6 +49,7 @@ public class Game extends Canvas implements Runnable {
 		
 		handler.addObject(new Player(WIDTH/2-12, HEIGHT/2-32, ID.Player, handler));
 		handler.addObject(new BasicEnemy(r.nextInt(Game.WIDTH), r.nextInt(Game.HEIGHT), ID.BasicEnemy, handler));
+		//handler.addObject(new SmartEnemy(r.nextInt(Game.WIDTH), r.nextInt(Game.HEIGHT), ID.SmartEnemy, handler));
 		
 		
 		//handler.addObject(new Player(WIDTH/2+64, HEIGHT/2-32, ID.Player2));
@@ -137,7 +140,7 @@ public class Game extends Canvas implements Runnable {
 		g.dispose();
 	}
 	
-	public static int clamp(int var, int min, int max) {
+	public static float clamp(float var, float min, float max) {
 		if (var >= max) 
 			return var = max;
 		else if (var <= min) 
