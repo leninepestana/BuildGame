@@ -24,7 +24,7 @@ public class Spawn {
 		if (scoreKeep >= 100) {
 			scoreKeep = 0;
 			hud.setLevel(hud.getLevel() + 1);
-			
+			/*
 			if (hud.getLevel() == 2) {
 				handler.addObject(new BasicEnemy(r.nextInt(Game.WIDTH - 50), r.nextInt(Game.HEIGHT - 50), ID.BasicEnemy, handler));
 			} else if (hud.getLevel() == 3) {
@@ -34,7 +34,7 @@ public class Spawn {
 				handler.addObject(new FasterEnemy(r.nextInt(Game.WIDTH - 50), r.nextInt(Game.HEIGHT - 50), ID.FasterEnemy, handler));
 			} else if (hud.getLevel() == 5) {
 				handler.addObject(new SmartEnemy(r.nextInt(Game.WIDTH - 50), r.nextInt(Game.HEIGHT - 50), ID.SmartEnemy, handler));
-			}
+			}*/
 		}
 	}
 }

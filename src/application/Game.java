@@ -7,6 +7,7 @@ import java.awt.image.BufferStrategy;
 import java.util.Random;
 
 import entities.BasicEnemy;
+import entities.BossEnemy;
 import entities.HUD;
 import entities.Handler;
 import entities.KeyInput;
@@ -48,7 +49,8 @@ public class Game extends Canvas implements Runnable {
 		
 		
 		handler.addObject(new Player(WIDTH/2-12, HEIGHT/2-32, ID.Player, handler));
-		handler.addObject(new BasicEnemy(r.nextInt(Game.WIDTH), r.nextInt(Game.HEIGHT), ID.BasicEnemy, handler));
+		//handler.addObject(new BasicEnemy(r.nextInt(Game.WIDTH), r.nextInt(Game.HEIGHT), ID.BasicEnemy, handler));
+		handler.addObject(new BossEnemy((Game.WIDTH / 2)-48, -120, ID.BossEnemy, handler));
 		//handler.addObject(new SmartEnemy(r.nextInt(Game.WIDTH), r.nextInt(Game.HEIGHT), ID.SmartEnemy, handler));
 		
 		
