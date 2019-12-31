@@ -36,8 +36,9 @@ public class Handler {
 		for (int i = 0; i < object.size(); i++) {
 			GameObject tempObject = object.get(i);
 			
-			if (tempObject.getId() != ID.Player) {
-				removeObject(tempObject);
+			if (tempObject.getId() == ID.Player) {
+				object.clear();
+				addObject(new Player((int)tempObject.getX(), (int)tempObject.getVelY(), ID.Player, this));
 			}
 		}
 		
