@@ -3,6 +3,7 @@ package entities;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Rectangle;
+import java.util.Random;
 
 import application.Game;
 import enumeration.ID;
@@ -10,6 +11,8 @@ import enumeration.ID;
 public class BossEnemy extends GameObject {
 
 	private Handler handler;
+	Random r = new Random();
+	
 	private int timer1 = 80;
 	private int timer2 = 50;
 	
@@ -41,7 +44,18 @@ public class BossEnemy extends GameObject {
 		
 		if (timer2 <= 0) {
 			if (velX == 0)
-				velX = 5;
+				velX = 2;
+			
+			if (velX > 0) {
+				velX += 0.005f; 
+			} else if (velX < 0) {
+				velX -= 0.005f;
+			}
+			
+			velX = Game.clamp(velX, -10, 10);
+				int spawn = r.nextInt(10);
+				if (spawn == 0)
+					handler.addObject(new BossBulletEnemy((int)x + 48, (int)y + 48, ID.BasicEnemy, handler));
 		}
 		
 		//if (y <= 0 || y >= Game.HEIGHT - 32) velY *= -1;
